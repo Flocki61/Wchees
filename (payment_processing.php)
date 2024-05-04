@@ -1,0 +1,34 @@
+<?php
+// Define your addresses
+$yourUSDTAddress = "0x6002ec51199b0612476e869bd503f137505b0273";
+$yourBitcoinAddress = "1FBuubmYYzFXz8FjBuENE9xoqpuN9UfyiQ";
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data
+    $paymentMethod = $_POST["payment_method"];
+    $betAmount = $_POST["bet"];
+    $paymentInfo = $_POST["payment_info"];
+
+    // Calculate your commission (20% of the bet amount)
+    $commission = $betAmount * 0.2;
+
+    // Calculate the remaining amount after deducting your commission
+    $remainingAmount = $betAmount - $commission;
+
+    // Perform payment processing logic here
+    // For demonstration purposes, let's just output the selected payment method, bet amount,
+    // payment information, your commission, the remaining amount, and your addresses
+    echo "Payment Method: " . $paymentMethod . "<br>";
+    echo "Bet Amount: $" . $betAmount . "<br>";
+    echo "Payment Information: " . $paymentInfo . "<br>";
+    echo "Your Commission: $" . $commission . "<br>";
+    echo "Remaining Amount (after commission): $" . $remainingAmount . "<br>";
+    echo "Your USDT Address: " . $yourUSDTAddress . "<br>";
+    echo "Your Bitcoin Address: " . $yourBitcoinAddress;
+} else {
+    // Redirect back to the form if accessed directly
+    header("Location: index.html");
+    exit();
+}
+?>

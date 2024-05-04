@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zchees 1v1 Chess Match</title>
+    <!-- Add any necessary CSS libraries here -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chessboardjs@1/css/chessboard.min.css">
+    <style>
+        /* Add your CSS styles here */
+        #board {
+            width: 400px; /* Adjust the width as needed */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Header content, like a logo or navigation menu -->
+    </header>
+
+    <main>
+        <h1>Welcome to Zchees 1v1 Chess Match</h1>
+        <p>To play, choose your payment method and bet:</p>
+        <form id="paymentForm" action="payment_processing.php" method="post">
+            <p>Choose your payment method:</p>
+            <select name="payment_method">
+                <option value="Bitcoin">Bitcoin</option>
+                <option value="USDT">USDT</option>
+            </select>
+            <p>Enter your card number or wallet address:</p>
+            <input type="text" name="payment_info" required>
+            <p>Choose your bet:</p>
+            <input type="radio" name="bet" value="1">$1
+            <input type="radio" name="bet" value="5">$5
+            <input type="radio" name="bet" value="100" checked>$100
+            <input type="radio" name="bet" value="500">$500
+            <button type="submit" id="playButton">Play</button>
+        </form>
+
+        <!-- Chessboard container -->
+        <div id="board"></div>
+    </main>
+
+    <footer>
+        <!-- Footer content -->
+    </footer>
+
+    <!-- Add any necessary JavaScript libraries here -->
+    <script src="https://cdn.jsdelivr.net/npm/chessboardjs@1"></script>
+    <script>
+        // Add your JavaScript code here
+        document.getElementById("paymentForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Perform client-side validation
+            var selectedPaymentMethod = document.querySelector('select[name="payment_method"]').value;
+            var paymentInfo = document.querySelector('input[name="payment_info"]').value;
+            var selectedBet = document.querySelector('input[name="bet"]:checked');
+            
+            if (!selectedBet) {
+                alert("Please select a bet amount.");
+                return;
+            }
+
+            // If validation passes, submit the form
+            this.submit();
+        });
+
+        // Initialize chessboard
+        var board = Chessboard('board', 'start');
+    </script>
+</body>
+</html>
